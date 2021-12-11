@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BurpExtender implements IBurpExtender {
-    private static final String name = "Collaborator Everywhere";
-    private static final String version = "1.3";
+    private static final String name = "log4shell Everywhere";
+    private static final String version = "1.0";
 
     // provides potentially useful info but increases memory usage
     static final boolean SAVE_RESPONSES = false;
@@ -67,8 +67,9 @@ class Monitor implements Runnable, IExtensionStateListener {
         MetaRequest metaReq = collab.getRequest(id);
         IHttpRequestResponse req = metaReq.getRequest();
         String type = collab.getType(id);
-        String severity = "High";
+        String severity = "Low";
         String ipAddress = interaction.getProperty("client_ip");
+	String confudence = "Low"
 
         /*
         if(ipAddress.startsWith("74.125.")){
@@ -76,15 +77,7 @@ class Monitor implements Runnable, IExtensionStateListener {
         }
         */
 
-        String rawDetail = interaction.getProperty("request");
-        if (rawDetail == null) {
-            rawDetail = interaction.getProperty("conversation");
-        }
-
-        if (rawDetail == null) {
-            severity = "Medium";
-            rawDetail = interaction.getProperty("raw_query");
-        }
+        String rawDetail = interaction.getProperty("raw_query");;
 
         String message = "The collaborator was contacted by <b>" + ipAddress;
 
@@ -98,6 +91,8 @@ class Monitor implements Runnable, IExtensionStateListener {
             message += " (reverse dns lookup failed)";
         }
         message +=  "</b>";
+	    
+	
 
         try {
             long interactionTime = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss z").parse(interaction.getProperty("time_stamp")).getTime();
@@ -115,6 +110,11 @@ class Monitor implements Runnable, IExtensionStateListener {
             message += "<b>This interaction appears to have been issued by your IP address</b><br/><br/>";
             severity = "Low";
         }
+	if (rawDetail.startsWith('303.')){
+		severity = "High"
+		confidence = "High"
+		Utilities.out('rawDetail:' + rawDetail)
+	}
 
         String decodedDetail = new String(Utilities.helpers.base64Decode(rawDetail));
         message += "<pre>    "+decodedDetail.replace("<", "&lt;").replace("\n", "\n    ")+"</pre>";
@@ -125,7 +125,7 @@ class Monitor implements Runnable, IExtensionStateListener {
 
         IRequestInfo reqInfo = Utilities.callbacks.getHelpers().analyzeRequest(req.getHttpService(), req.getRequest());
         Utilities.callbacks.addScanIssue(
-                new CustomScanIssue(req.getHttpService(), reqInfo.getUrl(), new IHttpRequestResponse[]{req}, "Collaborator Pingback ("+interaction.getProperty("type")+"): "+type, message+interaction.getProperties().toString(), severity, "Certain", "Panic"));
+                new CustomScanIssue(req.getHttpService(), reqInfo.getUrl(), new IHttpRequestResponse[]{req}, "Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type, message+interaction.getProperties().toString(), severity, confidence, "Panic"));
     }
 
 }
