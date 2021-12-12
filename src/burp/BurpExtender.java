@@ -71,7 +71,7 @@ class Monitor implements Runnable, IExtensionStateListener {
         String severity = "Low";
         String ipAddress = interaction.getProperty("client_ip");
 	    String confidence = "Firm";
-        String title = "Potential Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type
+        String title = "Potential Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type;
 
         /*
         if(ipAddress.startsWith("74.125.")){
