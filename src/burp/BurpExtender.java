@@ -64,12 +64,14 @@ class Monitor implements Runnable, IExtensionStateListener {
     private void processInteraction(IBurpCollaboratorInteraction interaction) {
         String id = interaction.getProperty("interaction_id");
         Utilities.out("Got an interaction:"+interaction.getProperties());
+        Utilities.out("Interaction ID: "+interaction.getProperty("interaction_id"));
         MetaRequest metaReq = collab.getRequest(id);
         IHttpRequestResponse req = metaReq.getRequest();
         String type = collab.getType(id);
         String severity = "Low";
         String ipAddress = interaction.getProperty("client_ip");
-	String confudence = "Low"
+	    String confidence = "Firm";
+        String title = "Potential Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type
 
         /*
         if(ipAddress.startsWith("74.125.")){
@@ -77,9 +79,9 @@ class Monitor implements Runnable, IExtensionStateListener {
         }
         */
 
-        String rawDetail = interaction.getProperty("raw_query");;
+        String rawDetail = interaction.getProperty("raw_query");
 
-        String message = "The collaborator was contacted by <b>" + ipAddress;
+        String message = "A log4shell pingback occured, from <b>" + ipAddress;
 
         try {
             String reverseDns = InetAddress.getByName(ipAddress).getCanonicalHostName();
@@ -109,23 +111,35 @@ class Monitor implements Runnable, IExtensionStateListener {
         if (collab.isClientIP(interaction.getProperty("client_ip"))) {
             message += "<b>This interaction appears to have been issued by your IP address</b><br/><br/>";
             severity = "Low";
+            confidence = "Tentative";
         }
-	if (rawDetail.startsWith('303.')){
-		severity = "High"
-		confidence = "High"
-		Utilities.out('rawDetail:' + rawDetail)
-	}
 
+        try {
+            byte[] rawDetailDecoded = Base64.getDecoder().decode(rawDetail);
+            String rawDetailString = new String(rawDetailDecoded);
+            int interactionIndex = rawDetailString.indexOf(interaction.getProperty("interaction_id"));
+            String rawSubdomainString = rawDetailString.substring(0,interactionIndex);
+            String potentialSubdomain = rawSubdomainString.substring(rawSubdomainString.length() - 3, rawSubdomainString.length() - 1);
+            if (potentialSubdomain.startsWith("xf") ){
+                severity = "High";
+                confidence = "Certain";
+                message += "<b> A nested JDNI lookup has been made in the dns request, increasing the confidence of this finding to certain. </b><br/><br/>";
+            }
+        }
+        catch (Exception e) {
+            Utilities.out("Error parsing raw_query: "+e.getMessage());
+        }
+    
         String decodedDetail = new String(Utilities.helpers.base64Decode(rawDetail));
         message += "<pre>    "+decodedDetail.replace("<", "&lt;").replace("\n", "\n    ")+"</pre>";
 
         message += "The payload was sent at "+new Date(metaReq.getTimestamp()).toString() + " and received on " + interaction.getProperty("time_stamp") +"<br/><br/>";
 
-        message += "To manually replicate this issue, use the Burp Collaborator Client available via the 'Burp' menu on the top left.<br/><br/>";
+        message += "To manually replicate this issue, observe the header used and repeat the request using a burp collaborator payload.<br/><br/>";
 
         IRequestInfo reqInfo = Utilities.callbacks.getHelpers().analyzeRequest(req.getHttpService(), req.getRequest());
         Utilities.callbacks.addScanIssue(
-                new CustomScanIssue(req.getHttpService(), reqInfo.getUrl(), new IHttpRequestResponse[]{req}, "Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type, message+interaction.getProperties().toString(), severity, confidence, "Panic"));
+                new CustomScanIssue(req.getHttpService(), reqInfo.getUrl(), new IHttpRequestResponse[]{req}, title, message+interaction.getProperties().toString(), severity, confidence, "Panic"));
     }
 
 }
