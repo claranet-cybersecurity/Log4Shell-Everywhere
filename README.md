@@ -1,4 +1,4 @@
-This is a simple (hacky!) fork of James Kettle's excellent [Collaborator Everywhere](https://github.com/PortSwigger/collaborator-everywhere/), with the injection parameters changed to payloads for the critical log4j CVE-2021-44228 vulnerability. This extension only works on in-scope traffic, and works by injecting headers into your proxy traffic with log4j exploits. 
+This is a simple fork of James Kettle's excellent [Collaborator Everywhere](https://github.com/PortSwigger/collaborator-everywhere/), with the injection parameters changed to payloads for the critical log4j CVE-2021-44228 vulnerability. This extension only works on in-scope traffic, and works by injecting headers into your proxy traffic with log4j exploits. 
 
 To avoid false positives with pingbacks such as with DNS requests made from host regex matching, and to potentially bypass filters, the `${lower:x}` pattern is used in the DNS request to establish confidence that there is some kind of of jdni lookup happening - if this matches, it will set the confidence to certain. 
 
