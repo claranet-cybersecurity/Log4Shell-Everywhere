@@ -2,10 +2,10 @@
 #param,u,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 #param,href,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 param,action,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
-param,host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+#param,host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 #param,http_host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-param,email,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
-param,url,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
+#param,email,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
+#param,url,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 #param,load,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 #param,preview,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 #param,target,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
