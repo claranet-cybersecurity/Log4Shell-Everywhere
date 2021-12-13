@@ -71,7 +71,7 @@ class Monitor implements Runnable, IExtensionStateListener {
         String severity = "Low";
         String ipAddress = interaction.getProperty("client_ip");
 	    String confidence = "Firm";
-        String title = "Potential Log4Shell Pingback ("+interaction.getProperty("type")+"): "+type;
+        String title = "Potential Log4Shell Pingback: "+type;
 
         /*
         if(ipAddress.startsWith("74.125.")){
@@ -123,6 +123,7 @@ class Monitor implements Runnable, IExtensionStateListener {
             if (potentialSubdomain.startsWith("xf") ){
                 severity = "High";
                 confidence = "Certain";
+                title = "Log4Shell Pingback with JDNI Lookup: "+type;
                 message += "<b> A nested JDNI lookup has been made in the dns request, increasing the confidence of this finding to certain. </b><br/><br/>";
             }
         }
