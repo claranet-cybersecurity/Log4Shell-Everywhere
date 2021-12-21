@@ -4,13 +4,16 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class BurpExtender implements IBurpExtender {
+public class BurpExtender implements IBurpExtender, ISessionHandlingAction, ITab {
     private static final String name = "log4shell Everywhere";
     private static final String version = "1.0";
 
     // provides potentially useful info but increases memory usage
     static final boolean SAVE_RESPONSES = false;
+    private BurpTab tab;
 
 
     @Override
@@ -26,9 +29,38 @@ public class BurpExtender implements IBurpExtender {
 
         callbacks.registerProxyListener(new Injector(collab));
 
+        callbacks.printOutput("Add Header Extension loaded");
+
         Utilities.out("Loaded " + name + " v" + version);
+
+    
+        // create our UI
+        // https://github.com/PortSwigger/add-custom-header/blob/master/burp/BurpExtender.java
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                tab = new BurpTab();
+                // some default values
+                final String DEFAULT_HEADER_NAME = "Authorization";
+                final String DEFAULT_HEADER_VALUE_PREFIX = "Bearer ";
+                final String DEFAULT_REGEXP = "access_token\":\"(.*?)\"";
+                final String DEFAULT_HARDCODED_VALUE = "<insert static JWT token here>";
+                
+                // set some default values
+                tab.setHeaderName(DEFAULT_HEADER_NAME);
+                tab.setHeaderValuePrefix(DEFAULT_HEADER_VALUE_PREFIX);
+                tab.setRegExpText(DEFAULT_REGEXP);
+                tab.setHardCodedText(DEFAULT_HARDCODED_VALUE);
+                // force update the example label
+                tab.updateFinalResultLabel();
+                // customize our UI components
+                callbacks.customizeUiComponent(tab);
+                callbacks.addSuiteTab(BurpExtender.this);
+            }
+        });
     }
 }
+
 
 class Monitor implements Runnable, IExtensionStateListener {
     private Correlator collab;
